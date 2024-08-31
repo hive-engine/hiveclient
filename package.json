@@ -1,0 +1,31 @@
+{
+  "name": "@hive-engine/hiveclient",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/@hive-engine/hiveclient.cjs",
+  "module": "./dist/@hive-engine/hiveclient.js",
+  "typings": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@noble/curves": "^1.5.0",
+    "@noble/hashes": "^1.4.0",
+    "bs58": "^6.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-inject": "^5.0.5",
+    "@types/node": "^20.16.2",
+    "eslint": "^9.9.1",
+    "eslint-config-unjs": "^0.3.2",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vite-plugin-dts": "^3.9.1"
+  },
+  "packageManager": "pnpm@9.9.0"
+}
