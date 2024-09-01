@@ -25,3 +25,5 @@ dist-ssr
 
 # Ignore coverage folder
 coverage
+
+.playground

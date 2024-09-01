@@ -1,8 +1,10 @@
-import bs58 from 'bs58';
 import { secp256k1 } from '@noble/curves/secp256k1';
-import { doubleSha256 } from '~/utils';
-import { PublicKey } from './PublicKey';
 import { sha256 } from '@noble/hashes/sha256';
+import bs58 from 'bs58';
+
+import { doubleSha256 } from '~/utils';
+
+import { PublicKey } from './PublicKey';
 
 const NETWORK_ID = [0x80];
 
@@ -29,18 +31,18 @@ export class PrivateKey {
     }
   }
 
-  static fromString(wif: string) {
-    return new PrivateKey(decodePrivate(wif).subarray(1));
+  static fromLogin(username: string, password: string, role = 'active') {
+    const seed = username + role + password;
+
+    return PrivateKey.fromSeed(seed);
   }
 
   static fromSeed(seed: string) {
     return new PrivateKey(sha256(seed));
   }
 
-  static fromLogin(username: string, password: string, role = 'active') {
-    const seed = username + role + password;
-
-    return PrivateKey.fromSeed(seed);
+  static fromString(wif: string) {
+    return new PrivateKey(decodePrivate(wif).subarray(1));
   }
 
   createPublic(prefix = 'STM') {

@@ -1,13 +1,17 @@
-import bs58 from 'bs58';
 import { ripemd160 } from '@noble/hashes/ripemd160';
+import bs58 from 'bs58';
 
 export class PublicKey {
   private key: Uint8Array;
   private prefix: string;
 
-  constructor(key: Uint8Array, prefix: string) {
+  constructor(key: Uint8Array, prefix = 'STM') {
     this.key = key;
     this.prefix = prefix;
+  }
+
+  static from(value: PublicKey | string) {
+    return value instanceof PublicKey ? value : PublicKey.fromString(value);
   }
 
   static fromString(wif: string) {
@@ -16,20 +20,16 @@ export class PublicKey {
     return new PublicKey(key, prefix);
   }
 
-  static from(value: PublicKey | string) {
-    return value instanceof PublicKey ? value : PublicKey.fromString(value);
-  }
-
-  toString() {
-    return encodePublic(this.key, this.prefix);
+  inspect() {
+    return `PublicKey: ${this.toString()}`;
   }
 
   toJSON() {
     return this.toString();
   }
 
-  inspect() {
-    return `PublicKey: ${this.toString()}`;
+  toString() {
+    return encodePublic(this.key, this.prefix);
   }
 }
 
