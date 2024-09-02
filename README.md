@@ -1,4 +1,4 @@
-# @hive-engine/hiveclient
+# @hiveengine/hiveclient
 
 Hive Blockchain client for Hive Engine projects.
 

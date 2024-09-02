@@ -1,8 +1,11 @@
 {
-  "name": "@hive-engine/hiveclient",
+  "name": "@hiveengine/hiveclient",
   "version": "0.1.4",
-  "description": "",
-  "repository": "hive-engine/hiveclient",
+  "description": "Hive Blockchain client for Hive Engine projects.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hive-engine/hiveclient.git"
+  },
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
@@ -25,7 +28,6 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepack": "pnpm build",
-    "prepare": "pnpm build",
     "play": "jiti playground",
     "release": "pnpm test && changelogen --release && npm publish && git push --follow-tags",
     "test": "pnpm lint && pnpm test:types && vitest run --coverage",
@@ -50,5 +52,13 @@
     "unbuild": "^3.0.0-rc.7",
     "vitest": "^2.0.5"
   },
-  "packageManager": "pnpm@9.9.0"
+  "packageManager": "pnpm@9.9.0",
+  "directories": {
+    "test": "test"
+  },
+  "author": "Reazul Iqbal",
+  "bugs": {
+    "url": "https://github.com/hive-engine/hiveclient/issues"
+  },
+  "homepage": "https://github.com/hive-engine/hiveclient#readme"
 }
