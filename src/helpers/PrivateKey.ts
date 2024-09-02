@@ -2,8 +2,7 @@ import { secp256k1 } from '@noble/curves/secp256k1';
 import { sha256 } from '@noble/hashes/sha256';
 import bs58 from 'bs58';
 
-import { doubleSha256 } from '~/utils';
-
+import { doubleSha256 } from '../utils';
 import { PublicKey } from './PublicKey';
 
 const NETWORK_ID = [0x80];

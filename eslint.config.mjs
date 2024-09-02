@@ -21,7 +21,7 @@ export default [
     languageOptions: {
       parserOptions: {
         projectService: {
-          allowDefaultProject: ['eslint.config.mjs', 'vite.config.ts'],
+          allowDefaultProject: ['eslint.config.mjs'],
           defaultProject: 'tsconfig.json',
         },
         tsconfigDirName: import.meta.dirname,
@@ -33,6 +33,11 @@ export default [
     ...typeScriptEslint.configs.disableTypeChecked,
   },
   {
-    ignores: ['dist', 'node_modules'],
+    ignores: ['dist', 'node_modules', 'coverage'],
+  },
+  {
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    },
   },
 ];
