@@ -1,6 +1,6 @@
 {
   "name": "@hiveengine/hiveclient",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Hive Blockchain client for Hive Engine projects.",
   "repository": {
     "type": "git",
