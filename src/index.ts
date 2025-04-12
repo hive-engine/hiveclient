@@ -1,3 +1,4 @@
+export { Asset } from './helpers/Asset';
 export { Client } from './helpers/Client';
 export { PrivateKey } from './helpers/PrivateKey';
 export { PublicKey } from './helpers/PublicKey';

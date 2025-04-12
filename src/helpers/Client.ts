@@ -1,5 +1,7 @@
 import { $fetch } from 'ofetch';
 
+import { DynamicGlobalProperties } from '../types/client';
+
 export class Client {
   private node: string;
   private nodes: string[];
@@ -17,16 +19,7 @@ export class Client {
       params,
     };
 
-    const body = JSON.stringify(postData, (_, value: any) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      if (value && typeof value === 'object' && value.type === 'Buffer') {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-        return Buffer.from(value.data).toString('hex');
-      }
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return value;
-    });
+    const body = JSON.stringify(postData);
 
     let result = null;
 
@@ -48,5 +41,11 @@ export class Client {
     this.node = this.nodes[index];
 
     console.log(`Failed over to: ${this.node}. Reason: ${reason}`);
+  }
+
+  async getDynamicGlobalProperties() {
+    const props = await this.call<DynamicGlobalProperties>('condenser_api.get_dynamic_global_properties');
+
+    return props;
   }
 }
