@@ -4,6 +4,7 @@ import bs58 from 'bs58';
 
 import { doubleSha256 } from '../utils';
 import { PublicKey } from './PublicKey';
+import { Signature } from './Signature';
 
 const NETWORK_ID = [0x80];
 
@@ -46,6 +47,12 @@ export class PrivateKey {
 
   createPublic(prefix = 'STM') {
     return new PublicKey(secp256k1.getPublicKey(this.key), prefix);
+  }
+
+  sign(message: string) {
+    const rv = secp256k1.sign(sha256(message), this.key, { extraEntropy: true, lowS: true });
+
+    return Signature.from((rv.recovery + 31).toString(16) + rv.toCompactHex());
   }
 
   toString() {
