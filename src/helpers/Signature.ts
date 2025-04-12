@@ -1,4 +1,5 @@
 import { secp256k1 } from '@noble/curves/secp256k1';
+import { sha256 } from '@noble/hashes/sha256';
 import { bytesToHex, hexToBytes } from '@noble/hashes/utils';
 
 import { PublicKey } from './PublicKey';
@@ -30,21 +31,13 @@ export class Signature {
     return new Signature(data, recovery, compressed);
   }
 
-  getPublicKey(message: string | Uint8Array) {
-    if (message instanceof Uint8Array && message.length !== 32) {
-      return new Error('Expected a valid sha256 hash as message');
-    }
-
-    if (typeof message === 'string' && message.length !== 64) {
-      return new Error('Expected a valid sha256 hash as message');
-    }
-
+  getPublicKey(message: string) {
     const sig = secp256k1.Signature.fromCompact(bytesToHex(this.data));
 
     // @ts-expect-error 3rd arguments for this class exists
     const temp = new secp256k1.Signature(sig.r, sig.s, this.recovery);
 
-    return new PublicKey(temp.recoverPublicKey(message).toRawBytes());
+    return new PublicKey(temp.recoverPublicKey(sha256(message)).toRawBytes());
   }
 
   toBuffer() {
